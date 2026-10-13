@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Cleartext HTTP is allowed ONLY because the app must be able to probe CDN
+  reachability on plain port 80 (an explicit user-selected feature).
+  All HTTPS/TLS tests keep full certificate validation enabled; the app never
+  disables certificate checks for its "verified" results.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>

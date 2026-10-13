@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CDNHunter Pro</string>
+
+    <!-- Tabs -->
+    <string name="tab_dashboard">Dashboard</string>
+    <string name="tab_scan">Scan</string>
+    <string name="tab_results">Results</string>
+    <string name="tab_tools">Tools</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">Dashboard</string>
+    <string name="status_idle">Idle</string>
+    <string name="status_running">Scanning…</string>
+    <string name="status_paused">Paused</string>
+    <string name="selected_cdns">Selected CDNs</string>
+    <string name="stat_discovered">Discovered candidates</string>
+    <string name="stat_tested">Tested IPs</string>
+    <string name="stat_reachable">Reachable</string>
+    <string name="stat_verified">Verified compatible</string>
+    <string name="stat_errors">Errors</string>
+    <string name="stat_progress">Progress</string>
+    <string name="stat_scan_speed">Scan speed</string>
+    <string name="stat_best_result">Best measured result</string>
+    <string name="stat_last_success">Last successful test</string>
+    <string name="no_scan_yet">No scan yet. Results appear here after your first scan.</string>
+    <string name="recent_scans">Recent scans</string>
+    <string name="btn_start_scan">Start scan</string>
+    <string name="btn_resume_scan">Resume scan</string>
+    <string name="btn_pause">Pause</string>
+    <string name="btn_cancel">Cancel</string>
+
+    <!-- Scan setup -->
+    <string name="scan_title">New scan</string>
+    <string name="scan_mode">Scan mode</string>
+    <string name="mode_quick">Quick</string>
+    <string name="mode_quick_desc">TCP probe + initial TLS check on a limited sample</string>
+    <string name="mode_standard">Standard</string>
+    <string name="mode_standard_desc">TCP + TLS + HTTP + latency, initial ranking</string>
+    <string name="mode_deep">Deep</string>
+    <string name="mode_deep_desc">Repeated tests, speed &amp; stability, IP×SNI combos, final re-validation</string>
+    <string name="select_cdns">CDN providers</string>
+    <string name="ip_ranges">IP ranges</string>
+    <string name="ranges_count">%1$d ranges</string>
+    <string name="concurrency">Concurrent connections</string>
+    <string name="timeout_ms">Timeout (ms)</string>
+    <string name="ports">Test ports</string>
+    <string name="port_80">80 (HTTP)</string>
+    <string name="port_443">443 (HTTPS/TLS)</string>
+    <string name="wifi_only">Wi-Fi only</string>
+    <string name="stop_on_network_change">Pause scan on network change</string>
+    <string name="data_cap_mb">Data cap (MB)</string>
+    <string name="sample_per_range">Sampled IPs per range</string>
+    <string name="max_targets">Maximum targets per scan</string>
+    <string name="start_scan">Start scan</string>
+    <string name="refresh_sources">Refresh IP sources</string>
+    <string name="last_updated">Last updated: %1$s</string>
+    <string name="never">never</string>
+    <string name="update_now">Update now</string>
+    <string name="imported_candidates">Imported candidates</string>
+    <string name="clear_candidates">Clear imported</string>
+    <string name="import_hint_txt">Import TXT (one IP per line)</string>
+    <string name="import_hint_csv">Import CSV</string>
+    <string name="import_hint_cidr">Import CIDR ranges (TXT)</string>
+    <string name="duplicate_removed">%1$d duplicates removed</string>
+    <string name="invalid_entries_skipped">%1$d invalid entries skipped</string>
+    <string name="targets_estimate">Estimated targets: %1$d</string>
+    <string name="data_cap_warning">Scanning sends small network probes; the data cap protects mobile plans.</string>
+    <string name="ranges_screen_title">IP range manager</string>
+    <string name="manage_ranges">Manage ranges</string>
+    <string name="fetch_failed">Fetching source failed: %1$s</string>
+    <string name="fetch_ok">%1$s: %2$d ranges added</string>
+    <string name="too_many_targets">Target cap reached (%1$d). Reduce samples per range or providers.</string>
+
+    <!-- Progress -->
+    <string name="progress_title">Scan progress</string>
+    <string name="tested_of">%1$d / %2$d tested</string>
+    <string name="remaining_ips">%1$d IPs remaining</string>
+    <string name="eta">Remaining time: %1$s</string>
+    <string name="errors_count">Errors: %1$d</string>
+    <string name="reachable_count">Reachable: %1$d</string>
+    <string name="pause_scan">Pause</string>
+    <string name="resume_scan">Resume</string>
+    <string name="cancel_scan">Cancel</string>
+    <string name="scan_paused">Scan paused — progress saved</string>
+    <string name="scan_running">Scan running…</string>
+    <string name="scan_completed">Scan completed</string>
+    <string name="scan_cancelled">Scan cancelled</string>
+    <string name="scan_failed">Scan failed</string>
+    <string name="scan_paused_network">Paused: network changed</string>
+    <string name="scan_paused_datacap">Paused: data cap reached</string>
+    <string name="scan_paused_wifi">Paused: Wi-Fi-only mode</string>
+    <string name="scan_speed_ips">%1$d IP/s</string>
+    <string name="network_changed">Network changed</string>
+    <string name="deep_phase">Deep phase: re-validating top candidates</string>
+
+    <!-- Results -->
+    <string name="results_title">Results</string>
+    <string name="filter_all">All</string>
+    <string name="filter_verified">Verified</string>
+    <string name="filter_candidate">Candidates</string>
+    <string name="filter_reachable_bad">Reachable/incompatible</string>
+    <string name="filter_unreachable">Unreachable</string>
+    <string name="filter_expired">Expired</string>
+    <string name="filter_insufficient">Insufficient data</string>
+    <string name="sort_score">Score</string>
+    <string name="sort_latency">Latency</string>
+    <string name="sort_speed">Speed</string>
+    <string name="sort_recent">Most recent</string>
+    <string name="rescan_ip">Re-test</string>
+    <string name="score">Score</string>
+    <string name="reasons">Why this score</string>
+    <string name="copy_ip">Copy IP</string>
+    <string name="export_results">Export</string>
+    <string name="results_empty">No results yet</string>
+    <string name="verdict_verified">Verified compatible</string>
+    <string name="verdict_candidate">Candidate — needs more testing</string>
+    <string name="verdict_reachable_bad">Reachable but incompatible</string>
+    <string name="verdict_unreachable">Unreachable</string>
+    <string name="verdict_expired">Expired result</string>
+    <string name="verdict_insufficient">Insufficient data</string>
+    <string name="unverified_note">TCP/TLS/HTTP success does not prove proxy-tunnel compatibility. Tunnel behaviour must be tested with the real client.</string>
+
+    <!-- IP detail -->
+    <string name="detail_title">IP details</string>
+    <string name="tcp_result">TCP</string>
+    <string name="tls_result">TLS</string>
+    <string name="http_result">HTTP</string>
+    <string name="latency">Latency</string>
+    <string name="jitter">Jitter</string>
+    <string name="download_speed">Download speed</string>
+    <string name="upload_speed">Upload speed</string>
+    <string name="success_rate">Success rate</string>
+    <string name="attempts">Attempts</string>
+    <string name="tls_version">TLS version</string>
+    <string name="cert_cn">Certificate CN</string>
+    <string name="cert_valid_until">Certificate valid until</string>
+    <string name="cert_matched">Certificate matched</string>
+    <string name="cert_not_matched">Certificate did NOT match</string>
+    <string name="error_category">Error category</string>
+    <string name="error_message">Error message</string>
+    <string name="last_tested">Last tested</string>
+    <string name="run_stability_test">Run stability test</string>
+    <string name="ping_again">Ping again</string>
+    <string name="provider">Provider</string>
+    <string name="source">Source</string>
+    <string name="latency_history">Latency history (this scan)</string>
+
+    <!-- SNI -->
+    <string name="sni_title">SNI testing</string>
+    <string name="sni_manage">SNI domains</string>
+    <string name="add_sni">Add SNI domain</string>
+    <string name="sni_hint">e.g. cdn.example.com</string>
+    <string name="sni_list">SNI list for %1$s</string>
+    <string name="test_sni">Test IP × SNI combinations</string>
+    <string name="sni_results">SNI results</string>
+    <string name="sni_ok">OK</string>
+    <string name="sni_fail">Failed</string>
+    <string name="sni_best">Best SNI: %1$s</string>
+    <string name="sni_ttl_hours">Result validity (hours)</string>
+    <string name="sni_expired">Expired — re-test recommended</string>
+    <string name="sni_retest">Re-test</string>
+    <string name="sni_invalid">Invalid hostname</string>
+    <string name="sni_note">A successful TLS handshake with an SNI does NOT prove proxy-tunnel compatibility.</string>
+    <string name="sni_empty">No SNI results yet. Add domains and run a deep scan or a manual test.</string>
+
+    <!-- Charts -->
+    <string name="charts_title">Charts</string>
+    <string name="chart_latency">Latency of top IPs (ms)</string>
+    <string name="chart_speed">Download speed of top IPs (KB/s)</string>
+    <string name="chart_jitter">Jitter of top IPs (ms)</string>
+    <string name="chart_top10">Top 10 by score</string>
+    <string name="chart_history">Best score over scans</string>
+    <string name="no_chart_data">Run a scan to see charts.</string>
+
+    <!-- History / compare -->
+    <string name="history_title">Scan history</string>
+    <string name="history_empty">No scans recorded yet</string>
+    <string name="compare_scans">Compare scans</string>
+    <string name="mode_label">Mode: %1$s</string>
+    <string name="duration_label">Duration: %1$s</string>
+    <string name="compare_title">Compare</string>
+    <string name="select_two_scans">Select two scans to compare</string>
+    <string name="compare_diff">Difference</string>
+    <string name="better">better</string>
+    <string name="worse">worse</string>
+    <string name="same">same</string>
+    <string name="delete_scan">Delete scan</string>
+
+    <!-- Export -->
+    <string name="export_title">Export results</string>
+    <string name="export_format">Format</string>
+    <string name="format_txt">TXT (IP list)</string>
+    <string name="format_csv">CSV</string>
+    <string name="format_json">JSON</string>
+    <string name="format_sk">Shir o Khorshid (IP list)</string>
+    <string name="format_sk_sni">Shir o Khorshid (SNI)</string>
+    <string name="copy">Copy</string>
+    <string name="share">Share</string>
+    <string name="save">Save file</string>
+    <string name="qr_code">QR code</string>
+    <string name="export_empty">Nothing to export — run a scan first</string>
+    <string name="export_done">Exported %1$d items</string>
+    <string name="export_copied">Copied to clipboard</string>
+    <string name="export_validated">Format validated</string>
+    <string name="export_invalid">Validation failed: %1$s</string>
+    <string name="sk_note">Verified against the official Shir o Khorshid source: paste the IP list into “CDN fronting → custom IP list” (IPv4, one per line) and the SNI into “custom SNI” (only the first SNI is used). Then set protocol to “cdn_fronting”.</string>
+    <string name="include_sni_pairs">Include IP|SNI pairs where available</string>
+    <string name="export_history">Export history</string>
+    <string name="qr_too_large">List too large for a single QR code — use TXT instead</string>
+    <string name="only_verified_export">Export only verified/candidates</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="network_settings">Network settings</string>
+    <string name="advanced_settings">Advanced settings</string>
+    <string name="language">Language</string>
+    <string name="theme">Theme</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_system">System</string>
+    <string name="general_settings">General</string>
+    <string name="concurrency_hint">1–64 parallel probes. Higher is faster but less reliable on weak links.</string>
+    <string name="timeout_hint">Applies to TCP connect and TLS handshake.</string>
+    <string name="wifi_only_desc">Skip scans on metered networks</string>
+    <string name="data_cap_desc">Scan pauses when this volume is exceeded</string>
+    <string name="stop_change_desc">Protects against half-finished results when switching Wi-Fi/mobile data</string>
+    <string name="result_ttl_hours">Result validity (hours)</string>
+    <string name="retry_attempts">Retries for transient errors</string>
+    <string name="weight_download">Download speed weight</string>
+    <string name="weight_stability">Stability weight</string>
+    <string name="weight_latency">Latency weight</string>
+    <string name="weight_jitter">Jitter weight</string>
+    <string name="weight_protocol">Protocol compatibility weight</string>
+    <string name="weights_sum_warning">Weights sum to %1$d%% — normalising automatically</string>
+    <string name="reset_weights">Reset to defaults</string>
+    <string name="clear_data">Clear all local data</string>
+    <string name="clear_data_confirm">Delete scans, results, ranges and settings from this device? This cannot be undone.</string>
+    <string name="error_log">Error log</string>
+    <string name="error_log_empty">No errors recorded</string>
+    <string name="privacy_title">Privacy</string>
+    <string name="privacy_body_short">All data stays on this device. No analytics, no telemetry, no server. Clear history any time.</string>
+
+    <!-- About -->
+    <string name="about_title">About &amp; privacy</string>
+    <string name="about_body">CDNHunter Pro discovers, scans and ranks CDN edge IPs that work well as CDN-fronting candidates, and exports them in client-compatible formats. It is a network diagnostic tool: it never creates a VPN, never intercepts other apps\' traffic and never installs certificates.</string>
+    <string name="version">Version %1$s</string>
+    <string name="github_repo">GitHub repository</string>
+    <string name="license_note">Licensed under MIT. Third-party libraries: AndroidX/Compose/Room/OkHttp/ZXing (Apache-2.0), Kotlin Coroutines &amp; Serialization (Apache-2.0).</string>
+    <string name="report_security">Report a security issue: open a private security advisory on the GitHub repository.</string>
+    <string name="privacy_full_title">Privacy policy</string>
+    <string name="privacy_full_body">• Scan results, ranges and settings are stored locally in the app database.\n• Nothing is uploaded to any server by the app.\n• Error logs never contain tokens, credentials or browsing data.\n• You can delete all data from Settings → Clear all local data.\n• The app only requests INTERNET and ACCESS_NETWORK_STATE permissions.</string>
+    <string name="limitations_title">Known limitations</string>
+    <string name="limitations_body">• “Verified compatible” means TLS+SNI+HTTP tests passed on that IP; it does not guarantee a specific proxy client tunnel will work.\n• HTTP/3 is not tested (network stack limitation).\n• IPv6 ranges are parsed and can be imported, but scanning samples only a tiny subset of huge IPv6 blocks.\n• Azure source URL changes weekly upstream; keep it updated in Advanced settings.\n• Results expire (default 72h) and should be re-tested before long-term use.</string>
+    <string name="real_data_note">The dashboard shows only real measurements from your own scans — no demo data.</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="confirm">Confirm</string>
+    <string name="close">Close</string>
+    <string name="error">Error</string>
+    <string name="loading">Loading…</string>
+    <string name="empty">Empty</string>
+    <string name="retry">Retry</string>
+    <string name="warning">Warning</string>
+    <string name="add">Add</string>
+    <string name="remove">Remove</string>
+    <string name="unknown">Unknown</string>
+    <string name="not_available">–</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="more">More tools</string>
+
+    <!-- Errors -->
+    <string name="err_no_internet">No internet connection</string>
+    <string name="err_wifi_only">Wi-Fi only mode is on — connect to Wi-Fi</string>
+    <string name="err_data_cap">Data cap reached</string>
+    <string name="err_invalid_ip">Invalid IP address</string>
+    <string name="err_invalid_cidr">Invalid CIDR</string>
+    <string name="err_source_fetch">Could not fetch the source list</string>
+    <string name="err_db">Local database error</string>
+
+    <!-- Error categories -->
+    <string name="ec_none">–</string>
+    <string name="ec_dns">DNS resolution failed</string>
+    <string name="ec_tcp_timeout">TCP timeout</string>
+    <string name="ec_tcp_refused">Connection refused</string>
+    <string name="ec_tcp_reset">Connection reset</string>
+    <string name="ec_tls_handshake">TLS handshake failed</string>
+    <string name="ec_tls_cert">TLS certificate invalid/mismatch</string>
+    <string name="ec_http_timeout">HTTP timeout</string>
+    <string name="ec_http_error">HTTP error response</string>
+    <string name="ec_rate_limited">Possibly rate-limited (not certain)</string>
+    <string name="ec_network_changed">Network changed mid-test</string>
+    <string name="ec_cancelled">Cancelled</string>
+    <string name="ec_unknown">Unknown error</string>
+</resources>

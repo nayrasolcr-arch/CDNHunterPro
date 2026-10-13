@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CDNHunter Pro</string>
+
+    <!-- Tabs -->
+    <string name="tab_dashboard">داشبورد</string>
+    <string name="tab_scan">اسکن</string>
+    <string name="tab_results">نتایج</string>
+    <string name="tab_tools">ابزارها</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">داشبورد</string>
+    <string name="status_idle">غیرفعال</string>
+    <string name="status_running">در حال اسکن…</string>
+    <string name="status_paused">متوقف‌شده</string>
+    <string name="selected_cdns">CDNهای انتخاب‌شده</string>
+    <string name="stat_discovered">نامزدهای کشف‌شده</string>
+    <string name="stat_tested">IPهای آزمایش‌شده</string>
+    <string name="stat_reachable">قابل‌دسترس</string>
+    <string name="stat_verified">تأییدشده سازگار</string>
+    <string name="stat_errors">خطاها</string>
+    <string name="stat_progress">پیشرفت</string>
+    <string name="stat_scan_speed">سرعت اسکن</string>
+    <string name="stat_best_result">بهترین نتیجه اندازه‌گیری‌شده</string>
+    <string name="stat_last_success">آخرین آزمایش موفق</string>
+    <string name="no_scan_yet">هنوز اسکنی انجام نشده است. پس از نخستین اسکن، نتایج اینجا نمایش داده می‌شود.</string>
+    <string name="recent_scans">اسکن‌های اخیر</string>
+    <string name="btn_start_scan">شروع اسکن</string>
+    <string name="btn_resume_scan">ادامه اسکن</string>
+    <string name="btn_pause">توقف</string>
+    <string name="btn_cancel">لغو</string>
+
+    <!-- Scan setup -->
+    <string name="scan_title">اسکن جدید</string>
+    <string name="scan_mode">حالت اسکن</string>
+    <string name="mode_quick">سریع</string>
+    <string name="mode_quick_desc">بررسی اولیه TCP و آزمایش مقدماتی TLS روی نمونه محدود</string>
+    <string name="mode_standard">استاندارد</string>
+    <string name="mode_standard_desc">TCP + TLS + HTTP + تأخیر و رتبه‌بندی اولیه</string>
+    <string name="mode_deep">عمیق</string>
+    <string name="mode_deep_desc">آزمایش‌های تکراری، سرعت و پایداری، ترکیب IP×SNI و اعتبارسنجی مجدد</string>
+    <string name="select_cdns">ارائه‌دهندگان CDN</string>
+    <string name="ip_ranges">محدوده‌های IP</string>
+    <string name="ranges_count">%1$d محدوده</string>
+    <string name="concurrency">اتصال‌های هم‌زمان</string>
+    <string name="timeout_ms">زمان انتظار (میلی‌ثانیه)</string>
+    <string name="ports">پورت‌های آزمایش</string>
+    <string name="port_80">۸۰ (HTTP)</string>
+    <string name="port_443">۴۴۳ (HTTPS/TLS)</string>
+    <string name="wifi_only">فقط Wi-Fi</string>
+    <string name="stop_on_network_change">توقف اسکن هنگام تغییر شبکه</string>
+    <string name="data_cap_mb">سقف مصرف داده (مگابایت)</string>
+    <string name="sample_per_range">IPهای نمونه از هر محدوده</string>
+    <string name="max_targets">حداکثر اهداف هر اسکن</string>
+    <string name="start_scan">شروع اسکن</string>
+    <string name="refresh_sources">به‌روزرسانی منابع IP</string>
+    <string name="last_updated">آخرین به‌روزرسانی: %1$s</string>
+    <string name="never">هرگز</string>
+    <string name="update_now">به‌روزرسانی کن</string>
+    <string name="imported_candidates">نامزدهای واردشده</string>
+    <string name="clear_candidates">پاک‌کردن واردشده‌ها</string>
+    <string name="import_hint_txt">ورود TXT (هر خط یک IP)</string>
+    <string name="import_hint_csv">ورود CSV</string>
+    <string name="import_hint_cidr">ورود محدوده‌های CIDR (TXT)</string>
+    <string name="duplicate_removed">%1$d مورد تکراری حذف شد</string>
+    <string name="invalid_entries_skipped">%1$d نامعتبر رد شد</string>
+    <string name="targets_estimate">تعداد اهداف تخمینی: %1$d</string>
+    <string name="data_cap_warning">اسکن بسته‌های شبکه‌ای کوچک ارسال می‌کند؛ سقف داده از مصرف اینترنت موبایل محافظت می‌کند.</string>
+    <string name="ranges_screen_title">مدیریت محدوده‌های IP</string>
+    <string name="manage_ranges">مدیریت محدوده‌ها</string>
+    <string name="fetch_failed">دریافت منبع ناموفق بود: %1$s</string>
+    <string name="fetch_ok">%1$s: %2$d محدوده اضافه شد</string>
+    <string name="too_many_targets">سقف اهداف پر شد (%1$d). نمونه هر محدوده یا ارائه‌دهنده‌ها را کم کنید.</string>
+
+    <!-- Progress -->
+    <string name="progress_title">پیشرفت اسکن</string>
+    <string name="tested_of">%1$d از %2$d آزمایش شد</string>
+    <string name="remaining_ips">%1$d IP باقی مانده</string>
+    <string name="eta">زمان باقی‌مانده: %1$s</string>
+    <string name="errors_count">خطاها: %1$d</string>
+    <string name="reachable_count">قابل‌دسترس: %1$d</string>
+    <string name="pause_scan">توقف</string>
+    <string name="resume_scan">ادامه</string>
+    <string name="cancel_scan">لغو</string>
+    <string name="scan_paused">اسکن متوقف شد — پیشرفت ذخیره شد</string>
+    <string name="scan_running">اسکن در حال اجراست…</string>
+    <string name="scan_completed">اسکن کامل شد</string>
+    <string name="scan_cancelled">اسکن لغو شد</string>
+    <string name="scan_failed">اسکن ناموفق بود</string>
+    <string name="scan_paused_network">متوقف شد: شبکه تغییر کرد</string>
+    <string name="scan_paused_datacap">متوقف شد: سقف داده پر شد</string>
+    <string name="scan_paused_wifi">متوقف شد: حالت فقط Wi-Fi</string>
+    <string name="scan_speed_ips">%1$d IP بر ثانیه</string>
+    <string name="network_changed">شبکه تغییر کرد</string>
+    <string name="deep_phase">مرحله عمیق: اعتبارسنجی مجدد نامزدهای برتر</string>
+
+    <!-- Results -->
+    <string name="results_title">نتایج</string>
+    <string name="filter_all">همه</string>
+    <string name="filter_verified">تأییدشده</string>
+    <string name="filter_candidate">نامزد</string>
+    <string name="filter_reachable_bad">قابل‌دسترس/ناسازگار</string>
+    <string name="filter_unreachable">غیرقابل‌دسترس</string>
+    <string name="filter_expired">منقضی</string>
+    <string name="filter_insufficient">داده ناکافی</string>
+    <string name="sort_score">امتیاز</string>
+    <string name="sort_latency">تأخیر</string>
+    <string name="sort_speed">سرعت</string>
+    <string name="sort_recent">جدیدترین</string>
+    <string name="rescan_ip">آزمایش مجدد</string>
+    <string name="score">امتیاز</string>
+    <string name="reasons">دلیل این امتیاز</string>
+    <string name="copy_ip">کپی IP</string>
+    <string name="export_results">خروجی</string>
+    <string name="results_empty">هنوز نتیجه‌ای نیست</string>
+    <string name="verdict_verified">سازگاری تأییدشده</string>
+    <string name="verdict_candidate">نامزد — نیازمند آزمایش بیشتر</string>
+    <string name="verdict_reachable_bad">قابل‌دسترس اما ناسازگار</string>
+    <string name="verdict_unreachable">غیرقابل‌دسترس</string>
+    <string name="verdict_expired">نتیجه منقضی‌شده</string>
+    <string name="verdict_insufficient">داده ناکافی</string>
+    <string name="unverified_note">موفقیت TCP/TLS/HTTP به‌تنهایی اثبات سازگاری تونل پروکسی نیست؛ رفتار تونل باید با کلاینت واقعی آزمایش شود.</string>
+
+    <!-- IP detail -->
+    <string name="detail_title">جزئیات IP</string>
+    <string name="tcp_result">TCP</string>
+    <string name="tls_result">TLS</string>
+    <string name="http_result">HTTP</string>
+    <string name="latency">تأخیر</string>
+    <string name="jitter">جیتر</string>
+    <string name="download_speed">سرعت دانلود</string>
+    <string name="upload_speed">سرعت آپلود</string>
+    <string name="success_rate">درصد موفقیت</string>
+    <string name="attempts">تعداد تلاش</string>
+    <string name="tls_version">نسخه TLS</string>
+    <string name="cert_cn">CN گواهی</string>
+    <string name="cert_valid_until">اعتبار گواهی تا</string>
+    <string name="cert_matched">گواهی منطبق است</string>
+    <string name="cert_not_matched">گواهی منطبق نبود</string>
+    <string name="error_category">دسته خطا</string>
+    <string name="error_message">پیام خطا</string>
+    <string name="last_tested">آخرین آزمایش</string>
+    <string name="run_stability_test">آزمایش پایداری</string>
+    <string name="ping_again">پینگ مجدد</string>
+    <string name="provider">ارائه‌دهنده</string>
+    <string name="source">منبع</string>
+    <string name="latency_history">تاریخچه تأخیر (این اسکن)</string>
+
+    <!-- SNI -->
+    <string name="sni_title">آزمایش SNI</string>
+    <string name="sni_manage">دامنه‌های SNI</string>
+    <string name="add_sni">افزودن دامنه SNI</string>
+    <string name="sni_hint">مثلاً cdn.example.com</string>
+    <string name="sni_list">فهرست SNI برای %1$s</string>
+    <string name="test_sni">آزمایش ترکیب‌های IP × SNI</string>
+    <string name="sni_results">نتایج SNI</string>
+    <string name="sni_ok">موفق</string>
+    <string name="sni_fail">ناموفق</string>
+    <string name="sni_best">بهترین SNI: %1$s</string>
+    <string name="sni_ttl_hours">اعتبار نتایج (ساعت)</string>
+    <string name="sni_expired">منقضی — آزمایش مجدد توصیه می‌شود</string>
+    <string name="sni_retest">آزمایش مجدد</string>
+    <string name="sni_invalid">نام دامنه نامعتبر</string>
+    <string name="sni_note">برقراری TLS با یک SNI به‌تنهایی اثبات سازگاری تونل پروکسی نیست.</string>
+    <string name="sni_empty">هنوز نتیجه SNI نیست. دامنه اضافه کنید و اسکن عمیق یا آزمایش دستی بگیرید.</string>
+
+    <!-- Charts -->
+    <string name="charts_title">نمودارها</string>
+    <string name="chart_latency">تأخیر IPهای برتر (میلی‌ثانیه)</string>
+    <string name="chart_speed">سرعت دانلود IPهای برتر (کیلوبایت/ثانیه)</string>
+    <string name="chart_jitter">جیتر IPهای برتر (میلی‌ثانیه)</string>
+    <string name="chart_top10">۱۰ مورد برتر بر اساس امتیاز</string>
+    <string name="chart_history">بهترین امتیاز در طول اسکن‌ها</string>
+    <string name="no_chart_data">برای دیدن نمودارها یک اسکن اجرا کنید.</string>
+
+    <!-- History / compare -->
+    <string name="history_title">تاریخچه اسکن‌ها</string>
+    <string name="history_empty">هنوز اسکنی ثبت نشده است</string>
+    <string name="compare_scans">مقایسه اسکن‌ها</string>
+    <string name="mode_label">حالت: %1$s</string>
+    <string name="duration_label">مدت: %1$s</string>
+    <string name="compare_title">مقایسه</string>
+    <string name="select_two_scans">دو اسکن را برای مقایسه انتخاب کنید</string>
+    <string name="compare_diff">تفاوت</string>
+    <string name="better">بهتر</string>
+    <string name="worse">بدتر</string>
+    <string name="same">یکسان</string>
+    <string name="delete_scan">حذف اسکن</string>
+
+    <!-- Export -->
+    <string name="export_title">خروجی گرفتن از نتایج</string>
+    <string name="export_format">قالب</string>
+    <string name="format_txt">TXT (فهرست IP)</string>
+    <string name="format_csv">CSV</string>
+    <string name="format_json">JSON</string>
+    <string name="format_sk">شیر و خورشید (فهرست IP)</string>
+    <string name="format_sk_sni">شیر و خورشید (SNI)</string>
+    <string name="copy">کپی</string>
+    <string name="share">اشتراک‌گذاری</string>
+    <string name="save">ذخیره فایل</string>
+    <string name="qr_code">کد QR</string>
+    <string name="export_empty">چیزی برای خروجی نیست — ابتدا اسکن بگیرید</string>
+    <string name="export_done">%1$d مورد خروجی گرفته شد</string>
+    <string name="export_copied">در کلیپ‌بورد کپی شد</string>
+    <string name="export_validated">قالب اعتبارسنجی شد</string>
+    <string name="export_invalid">اعتبارسنجی ناموفق: %1$s</string>
+    <string name="sk_note">بر اساس سورس رسمی شیر و خورشید: فهرست IP را در «CDN Fronting → custom IP list» (فقط IPv4، هر خط یکی) و SNI را در «custom SNI» (فقط اولین SNI استفاده می‌شود) قرار دهید و پروتکل را روی «cdn_fronting» بگذارید.</string>
+    <string name="include_sni_pairs">افزودن جفت‌های IP|SNI (در صورت وجود)</string>
+    <string name="export_history">تاریخچه خروجی‌ها</string>
+    <string name="qr_too_large">فهرست برای یک کد QR بزرگ است — از TXT استفاده کنید</string>
+    <string name="only_verified_export">فقط تأییدشده‌ها و نامزدها</string>
+
+    <!-- Settings -->
+    <string name="settings_title">تنظیمات</string>
+    <string name="network_settings">تنظیمات شبکه</string>
+    <string name="advanced_settings">تنظیمات پیشرفته</string>
+    <string name="language">زبان</string>
+    <string name="theme">پوسته</string>
+    <string name="theme_dark">تاریک</string>
+    <string name="theme_light">روشن</string>
+    <string name="theme_system">سیستم</string>
+    <string name="general_settings">عمومی</string>
+    <string name="concurrency_hint">۱ تا ۶۴ پروب موازی؛ بیشتر یعنی سریع‌تر اما ناپایدارتر روی لینک ضعیف.</string>
+    <string name="timeout_hint">روی اتصال TCP و دست‌دهی TLS اعمال می‌شود.</string>
+    <string name="wifi_only_desc">اسکن روی شبکه‌های سنجیده انجام نشود</string>
+    <string name="data_cap_desc">اسکن پس از عبور از این حجم متوقف می‌شود</string>
+    <string name="stop_change_desc">از نتایج نیمه‌کاره هنگام جابه‌جایی Wi-Fi/داده موبایل جلوگیری می‌کند</string>
+    <string name="result_ttl_hours">اعتبار نتایج (ساعت)</string>
+    <string name="retry_attempts">تلاش مجدد برای خطاهای موقت</string>
+    <string name="weight_download">وزن سرعت دانلود</string>
+    <string name="weight_stability">وزن پایداری</string>
+    <string name="weight_latency">وزن تأخیر</string>
+    <string name="weight_jitter">وزن جیتر</string>
+    <string name="weight_protocol">وزن سازگاری پروتکل</string>
+    <string name="weights_sum_warning">مجموع وزن‌ها %1$d%% است — خودکار نرمال می‌شود</string>
+    <string name="reset_weights">بازگشت به پیش‌فرض</string>
+    <string name="clear_data">پاک‌کردن همه داده‌های محلی</string>
+    <string name="clear_data_confirm">اسکن‌ها، نتایج، محدوده‌ها و تنظیمات از این دستگاه حذف شود؟ این کار برگشت‌پذیر نیست.</string>
+    <string name="error_log">گزارش خطاها</string>
+    <string name="error_log_empty">خطایی ثبت نشده است</string>
+    <string name="privacy_title">حریم خصوصی</string>
+    <string name="privacy_body_short">همه داده‌ها روی همین دستگاه می‌ماند. بدون آمارگیر، بدون تلمتری، بدون سرور. هر زمان می‌توانید تاریخچه را پاک کنید.</string>
+
+    <!-- About -->
+    <string name="about_title">درباره و حریم خصوصی</string>
+    <string name="about_body">CDNHunter Pro لبه‌های CDN را کشف، اسکن و رتبه‌بندی می‌کند و آن‌ها را در قالب‌های سازگار با کلاینت‌های پروکسی خروجی می‌دهد. این یک ابزار تشخیص شبکه است: هرگز VPN نمی‌سازد، ترافیک برنامه‌های دیگر را رهگیری نمی‌کند و گواهی نصب نمی‌کند.</string>
+    <string name="version">نسخه %1$s</string>
+    <string name="github_repo">مخزن GitHub</string>
+    <string name="license_note">با مجوز MIT منتشر شده است. کتابخانه‌های ثالث: AndroidX/Compose/Room/OkHttp/ZXing (Apache-2.0)، Kotlin Coroutines و Serialization (Apache-2.0).</string>
+    <string name="report_security">گزارش مشکل امنیتی: در مخزن GitHub یک Private Security Advisory باز کنید.</string>
+    <string name="privacy_full_title">سیاست حریم خصوصی</string>
+    <string name="privacy_full_body">• نتایج اسکن، محدوده‌ها و تنظیمات فقط در پایگاه‌داده محلی برنامه ذخیره می‌شوند.\n• برنامه هیچ داده‌ای به هیچ سروری ارسال نمی‌کند.\n• لاگ خطاها هرگز شامل توکن، رمز یا داده مرور نیست.\n• از تنظیمات ← پاک‌کردن همه داده‌های محلی می‌توانید همه‌چیز را حذف کنید.\n• برنامه فقط مجوزهای INTERNET و ACCESS_NETWORK_STATE را می‌خواهد.</string>
+    <string name="limitations_title">محدودیت‌های شناخته‌شده</string>
+    <string name="limitations_body">• «سازگاری تأییدشده» یعنی آزمایش‌های TLS+SNI+HTTP روی آن IP موفق بوده؛ تضمین کارکرد تونل یک کلاینت خاص نیست.\n• HTTP/3 آزمایش نمی‌شود (محدودیت کتابخانه شبکه).\n• محدوده‌های IPv6 تجزیه و وارد می‌شوند اما اسکن فقط بخش بسیار کوچکی از بلوک‌های عظیم IPv6 را نمونه می‌گیرد.\n• آدرس منبع Azure هر هفته در بالادست تغییر می‌کند؛ آن را در تنظیمات پیشرفته به‌روز نگه دارید.\n• نتایج منقضی می‌شوند (پیش‌فرض ۷۲ ساعت) و پیش از استفاده طولانی باید دوباره آزمایش شوند.</string>
+    <string name="real_data_note">داشبورد فقط اندازه‌گیری‌های واقعی اسکن‌های خود شما را نشان می‌دهد — بدون داده دمو.</string>
+
+    <!-- Common -->
+    <string name="ok">تأیید</string>
+    <string name="cancel">لغو</string>
+    <string name="delete">حذف</string>
+    <string name="confirm">مطمئنید؟</string>
+    <string name="close">بستن</string>
+    <string name="error">خطا</string>
+    <string name="loading">در حال بارگذاری…</string>
+    <string name="empty">خالی</string>
+    <string name="retry">تلاش مجدد</string>
+    <string name="warning">هشدار</string>
+    <string name="add">افزودن</string>
+    <string name="remove">حذف</string>
+    <string name="unknown">نامشخص</string>
+    <string name="not_available">–</string>
+    <string name="yes">بله</string>
+    <string name="no">خیر</string>
+    <string name="more">ابزارهای بیشتر</string>
+
+    <!-- Errors -->
+    <string name="err_no_internet">اتصال اینترنت موجود نیست</string>
+    <string name="err_wifi_only">حالت فقط Wi-Fi فعال است — به Wi-Fi وصل شوید</string>
+    <string name="err_data_cap">سقف داده پر شد</string>
+    <string name="err_invalid_ip">آدرس IP نامعتبر</string>
+    <string name="err_invalid_cidr">CIDR نامعتبر</string>
+    <string name="err_source_fetch">دریافت فهرست منبع ممکن نشد</string>
+    <string name="err_db">خطای پایگاه‌داده محلی</string>
+
+    <!-- Error categories -->
+    <string name="ec_none">–</string>
+    <string name="ec_dns">شکست حل‌کردن DNS</string>
+    <string name="ec_tcp_timeout">اتمام وقت TCP</string>
+    <string name="ec_tcp_refused">اتصال رد شد</string>
+    <string name="ec_tcp_reset">اتصال ریست شد</string>
+    <string name="ec_tls_handshake">دست‌دهی TLS ناموفق</string>
+    <string name="ec_tls_cert">گواهی TLS نامعتبر/نامطابق</string>
+    <string name="ec_http_timeout">اتمام وقت HTTP</string>
+    <string name="ec_http_error">پاسخ خطای HTTP</string>
+    <string name="ec_rate_limited">احتمال محدودیت سرعت (قطعی نیست)</string>
+    <string name="ec_network_changed">شبکه حین آزمایش تغییر کرد</string>
+    <string name="ec_cancelled">لغو شد</string>
+    <string name="ec_unknown">خطای نامشخص</string>
+</resources>

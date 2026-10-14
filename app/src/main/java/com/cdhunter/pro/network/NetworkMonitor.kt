@@ -60,8 +60,13 @@ class NetworkMonitor(context: Context, private val scope: CoroutineScope) {
     fun currentState(): NetState {
         val active: Network? = cm.activeNetwork
         val caps = active?.let { cm.getNetworkCapabilities(it) }
-        val online = caps?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true &&
-            caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+        // NOTE: we deliberately do NOT require NET_CAPABILITY_VALIDATED.
+        // The OS "validated" bit depends on reaching Google's connectivity
+        // check servers, which are blocked or unreliable on censored networks
+        // (the classic "Wi-Fi with an ! icon" state). Requiring it used to
+        // make the scanner refuse to start on networks that work fine.
+        // The probes themselves decide reachability honestly.
+        val online = caps?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
         val metered = caps != null &&
             !caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED)
         return NetState(
@@ -70,6 +75,28 @@ class NetworkMonitor(context: Context, private val scope: CoroutineScope) {
             networkToken = active?.networkHandle?.toString() ?: "none",
             changedAtMs = System.currentTimeMillis(),
         )
+    }
+
+    /**
+     * True only when the device actually holds a globally-scoped IPv6 address.
+     * Sampling IPv6 CIDRs on IPv4-only networks just burns the data cap on
+     * guaranteed-unreachable probes, so the target builder skips them.
+     */
+    fun hasGlobalIpv6(): Boolean = runCatching {
+        java.net.NetworkInterface.getNetworkInterfaces().asSequence()
+            .filter { it.isUp && !it.isLoopback }
+            .flatMap { it.inetAddresses.asSequence() }
+            .any { addr ->
+                addr is java.net.Inet6Address &&
+                    !addr.isLoopbackAddress &&
+                    !addr.isLinkLocalAddress &&
+                    !isUniqueLocal(addr)
+            }
+    }.getOrDefault(false)
+
+    private fun isUniqueLocal(addr: java.net.Inet6Address): Boolean {
+        val first = addr.address[0].toInt() and 0xFF
+        return first in 0xFC..0xFD // fc00::/7 unique-local, not globally routable
     }
 
     /** Starts keeping [state] fresh; called once from the Application. */

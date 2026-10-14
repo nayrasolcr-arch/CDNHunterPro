@@ -275,6 +275,8 @@
 
     <!-- Errors -->
     <string name="err_no_internet">اتصال اینترنت موجود نیست</string>
+    <string name="err_no_targets">هیچ هدفی برای اسکن وجود ندارد — فهرست بازه‌های CDN خالی است. از «انتخاب CDN» گزینه «به‌روزرسانی» را بزنید یا یک IP/CIDR وارد کنید</string>
+    <string name="ranges_none_warning">هنوز هیچ بازه IP ذخیره نشده — برای اسکن حداقل یک بازه رسمی (به‌روزرسانی از بخش انتخاب CDN) یا یک IP واردشده لازم است</string>
     <string name="err_wifi_only">حالت فقط Wi-Fi فعال است — به Wi-Fi وصل شوید</string>
     <string name="err_data_cap">سقف داده پر شد</string>
     <string name="err_invalid_ip">آدرس IP نامعتبر</string>

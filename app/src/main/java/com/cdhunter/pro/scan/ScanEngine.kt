@@ -25,7 +25,9 @@ import com.cdhunter.pro.repo.RangeRepository
 import com.cdhunter.pro.repo.ResultRepository
 import com.cdhunter.pro.repo.SettingsRepository
 import com.cdhunter.pro.sni.SniEngine
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -125,12 +127,14 @@ class ScanEngine(
     private fun launchLoop() {
         val cfg = config ?: return
         job = scope.launch {
-            // Watch for network change while running.
+            // Watch for connectivity loss while running. We pause only when
+            // the network actually goes OFFLINE — NOT on every network-token
+            // change (VPN apps and transient onLost events fire those constantly
+            // and used to pause the scan seconds after start).
             if (cfg.stopOnNetworkChange) {
-                val startToken = monitor.currentState().networkToken
                 launch {
                     monitor.changes.collect { st ->
-                        if (st.networkToken != startToken && isActive) {
+                        if (!st.online && isActive) {
                             pausedByNetwork = true
                             pause(PauseReason.NETWORK_CHANGED)
                         }
@@ -140,25 +144,41 @@ class ScanEngine(
 
             val semaphore = Semaphore(cfg.concurrency.coerceIn(1, 64))
             val pending = targets.drop(cursor)
-            val jobs = mutableListOf<Job>()
 
-            for ((index, target) in pending.withIndex()) {
-                if (bytesUsed > cfg.dataCapBytes) {
-                    pause(PauseReason.DATA_CAP)
-                    break
-                }
-                if (!isActive) break
-                val absoluteIndex = cursor + index
-                jobs += scope.launch {
-                    semaphore.withPermit {
-                        if (!isActive) return@withPermit
-                        val outcome = runProbe(target, cfg)
-                        publish(outcome)
-                        advanceCursor(absoluteIndex + 1)
+            try {
+                // Per-target probes are CHILDREN of the scan job (coroutineScope),
+                // so pause()/cancel() stops them all, and completion is awaited
+                // implicitly before the finish block below.
+                coroutineScope {
+                    for ((index, target) in pending.withIndex()) {
+                        if (bytesUsed > cfg.dataCapBytes) {
+                            pause(PauseReason.DATA_CAP)
+                            break
+                        }
+                        if (!isActive) break
+                        val absoluteIndex = cursor + index
+                        launch {
+                            semaphore.withPermit {
+                                if (!isActive) return@withPermit
+                                try {
+                                    val outcome = runProbe(target, cfg)
+                                    publish(outcome)
+                                    advanceCursor(absoluteIndex + 1)
+                                } catch (e: CancellationException) {
+                                    throw e
+                                } catch (e: Exception) {
+                                    // One bad probe (e.g. a storage hiccup while
+                                    // publishing) must never crash the whole app.
+                                    synchronized(this@ScanEngine) { errors++ }
+                                    android.util.Log.w("ScanEngine", "probe failed: ${target.ip}", e)
+                                }
+                            }
+                        }
                     }
                 }
+            } catch (e: CancellationException) {
+                // Paused or cancelled — progress already persisted by pause()/cancel().
             }
-            jobs.forEach { it.join() }
 
             if (isActive && !pausedByNetwork) {
                 if (bytesUsed > cfg.dataCapBytes) {
@@ -433,9 +453,13 @@ class ScanEngine(
 
         // 2) sample from ranges of selected providers.
         val ranges = rangeRepository.rangesSnapshot()
+        val v6Supported = monitor.hasGlobalIpv6()
         for (provider in cfg.providers) {
             val providerRanges = ranges.filter { it.providerId == provider }
             for (range in providerRanges) {
+                // Skip IPv6 blocks on IPv4-only devices — probing them only
+                // burns the data cap on guaranteed-unreachable connections.
+                if (range.family == 6 && !v6Supported) continue
                 val samples = Cidr.sample(range.cidr, cfg.samplePerRange)
                 for (ip in samples) {
                     if (out.size >= cfg.maxTargets) break

@@ -11,6 +11,7 @@ import com.cdhunter.pro.network.TcpTester
 import com.cdhunter.pro.network.TlsTester
 import com.cdhunter.pro.repo.CandidateRepository
 import com.cdhunter.pro.repo.RangeRepository
+import com.cdhunter.pro.repo.RangeSeeder
 import com.cdhunter.pro.repo.ResultRepository
 import com.cdhunter.pro.repo.SettingsRepository
 import com.cdhunter.pro.scan.ScanEngine
@@ -37,6 +38,10 @@ class AppContainer(context: Context) {
 
     val rangeRepository: RangeRepository by lazy {
         RangeRepository(database.ipRangeDao(), database.providerStateDao(), rangeFetcher)
+    }
+
+    val rangeSeeder: RangeSeeder by lazy {
+        RangeSeeder(database.ipRangeDao(), database.providerStateDao())
     }
 
     val candidateRepository: CandidateRepository by lazy { CandidateRepository(database.candidateDao()) }
@@ -83,5 +88,9 @@ class AppContainer(context: Context) {
         settings.load()
         networkMonitor.start()
         scanEngine.recoverStaleScans()
+        // First-launch guarantee: seed the OFFICIAL bundled ranges so the very
+        // first scan always has real targets (a fresh install used to have an
+        // empty ranges table → zero targets → an "empty" scan).
+        rangeSeeder.seedIfNeeded(context)
     }
 }

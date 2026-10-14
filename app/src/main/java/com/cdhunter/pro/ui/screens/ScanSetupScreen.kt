@@ -104,14 +104,29 @@ class ScanSetupVm(private val c: AppContainer) : ViewModel() {
     fun start(onStarted: (String?) -> Unit) {
         viewModelScope.launch {
             val cfg = buildConfig()
-            when (c.scanEngine.start(cfg)) {
+            var res = c.scanEngine.start(cfg)
+            if (res == com.cdhunter.pro.scan.ScanEngine.Result.NO_TARGETS) {
+                // Safety net for an empty ranges table (e.g. data cleared): one
+                // bounded, targeted live refresh of the providers that have no
+                // ranges, then retry once before reporting failure.
+                val emptyProviders = cfg.providers
+                    .filter { it != com.cdhunter.pro.core.registry.CdnRegistry.IMPORTED_ID }
+                    .filter { c.rangeRepository.countFor(it) == 0 }
+                if (emptyProviders.isNotEmpty()) {
+                    kotlinx.coroutines.withTimeoutOrNull(30_000) {
+                        c.rangeRepository.updateProviders(emptyProviders)
+                    }
+                    res = c.scanEngine.start(cfg)
+                }
+            }
+            when (res) {
                 com.cdhunter.pro.scan.ScanEngine.Result.STARTED -> {
                     c.settings.setScanMode(cfg.mode)
                     c.settings.setSelectedProviders(cfg.providers)
                     onStarted(null)
                 }
                 com.cdhunter.pro.scan.ScanEngine.Result.NO_TARGETS ->
-                    onStarted(c.context.getString(R.string.export_empty))
+                    onStarted(c.context.getString(R.string.err_no_targets))
                 com.cdhunter.pro.scan.ScanEngine.Result.WIFI_ONLY_BLOCKED ->
                     onStarted(c.context.getString(R.string.err_wifi_only))
                 com.cdhunter.pro.scan.ScanEngine.Result.NO_NETWORK ->
@@ -181,11 +196,19 @@ fun ScanSetupScreen(container: AppContainer, nav: NavController) {
         }
 
         SectionCard(stringResource(R.string.select_cdns)) {
-            providers.forEach { pid ->
+            // Show EVERY known provider (official registry + imported) with its
+            // real checked state — the old hardcoded checked=true made removed
+            // providers impossible to re-select.
+            val allIds = com.cdhunter.pro.core.registry.CdnRegistry.ALL.map { it.id } +
+                com.cdhunter.pro.core.registry.CdnRegistry.IMPORTED_ID
+            allIds.forEach { pid ->
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Checkbox(checked = true, onCheckedChange = {
-                        vm.providers.value = if (it) providers else providers - pid
-                    })
+                    Checkbox(
+                        checked = pid in providers,
+                        onCheckedChange = { on ->
+                            vm.providers.value = if (on) providers + pid else providers - pid
+                        },
+                    )
                     Text(com.cdhunter.pro.core.registry.CdnRegistry.displayName(pid))
                 }
             }
@@ -195,9 +218,16 @@ fun ScanSetupScreen(container: AppContainer, nav: NavController) {
             OutlinedButton(onClick = { nav.navigate(Routes.RANGE_MANAGER) }) {
                 Text(stringResource(R.string.manage_ranges) + " ▸")
             }
-            providers.forEach { pid ->
+            allIds.forEach { pid ->
                 val count = rangeCounts[pid] ?: 0
-                Text("$pid: ${stringResource(R.string.ranges_count, count)}", style = MaterialTheme.typography.bodySmall)
+                Text("${com.cdhunter.pro.core.registry.CdnRegistry.displayName(pid)}: ${stringResource(R.string.ranges_count, count)}", style = MaterialTheme.typography.bodySmall)
+            }
+            if (rangeCounts.values.all { it == 0 } && rangeCounts.isNotEmpty()) {
+                Text(
+                    stringResource(R.string.ranges_none_warning),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.error,
+                )
             }
         }
 

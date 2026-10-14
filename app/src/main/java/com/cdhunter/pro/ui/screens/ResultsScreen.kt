@@ -39,8 +39,12 @@ import com.cdhunter.pro.ui.components.Fmt
 import com.cdhunter.pro.ui.components.VerdictChip
 import com.cdhunter.pro.ui.vm.vmFactory
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
+@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
 class ResultsVm(private val c: AppContainer, private val argScanId: Long) : ViewModel() {
     val scanId = MutableStateFlow(argScanId)
     val results = MutableStateFlow<List<ResultEntity>>(emptyList())
@@ -53,11 +57,27 @@ class ResultsVm(private val c: AppContainer, private val argScanId: Long) : View
 
     init {
         viewModelScope.launch {
-            val id = if (argScanId > 0) argScanId
-            else c.database.scanDao().recentOnce().firstOrNull()?.id ?: -1
-            scanId.value = id
             ttlHours.value = c.settings.resultTtlHours()
-            load()
+            // LIVE observation — previously a one-shot query: results that
+            // arrived while the scan ran never showed up, and if the tab had
+            // been opened before any scan existed it stayed empty forever.
+            val flow = if (argScanId > 0) {
+                scanId.value = argScanId
+                c.resultRepository.observeForScan(argScanId)
+            } else {
+                c.database.scanDao().observeRecent()
+                    .map { it.firstOrNull()?.id ?: -1L }
+                    .distinctUntilChanged()
+                    .flatMapLatest { id ->
+                        scanId.value = id
+                        if (id > 0) c.resultRepository.observeForScan(id)
+                        else kotlinx.coroutines.flow.flowOf(emptyList())
+                    }
+            }
+            flow.collect { rows ->
+                results.value = rows
+                loaded.value = true
+            }
         }
     }
 

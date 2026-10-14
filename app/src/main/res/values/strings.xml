@@ -275,6 +275,8 @@
 
     <!-- Errors -->
     <string name="err_no_internet">No internet connection</string>
+    <string name="err_no_targets">No scan targets — the CDN range list is empty. Open “Select CDNs” and tap “Update now”, or import an IP/CIDR</string>
+    <string name="ranges_none_warning">No IP ranges stored yet — scans need at least one official range (update from Select CDNs) or an imported IP</string>
     <string name="err_wifi_only">Wi-Fi only mode is on — connect to Wi-Fi</string>
     <string name="err_data_cap">Data cap reached</string>
     <string name="err_invalid_ip">Invalid IP address</string>
